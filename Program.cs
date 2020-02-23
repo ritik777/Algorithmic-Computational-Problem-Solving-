@@ -22,6 +22,8 @@ namespace Assignment_2
         }
 
         public static void solvePuzzle() {
+
+
             // Input Strings
             Console.WriteLine("Enter the first String");
             String s1 = Console.ReadLine();
@@ -31,10 +33,148 @@ namespace Assignment_2
             //Output Strings
             Console.WriteLine("Enter the Output String");
             String s3 = Console.ReadLine();
+            //String of unique characters
+            int l1 = s1.Length;
+            int l2 = s2.Length;
+            int l3 = s3.Length;
+            int l4 = 0;
+            int[] values = new int[(10)];
+            char[] letters = new char[(10)];
+            Random random = new Random();
+            add(s1.ToCharArray());
+            add(s2.ToCharArray());
+            add(s3.ToCharArray());
 
-            uniqueCharacters(s1, s2, s3);
+            for (int y = 0; y < letters.Length; y++) {
+                Console.Write(letters[y]);
+            }
 
-            void uniqueCharacters(String str1, String str2, String str3)
+            //values array
+            for (int v = 0; v < letters.Length; v++) {
+                values[v] = 0;
+            }
+            int iteration = 10000000;
+            for (int i = 1; i < iteration; i++)
+            {
+                findvalues();
+                for (int q = 0; q < l4; q++)
+                {
+                    for (int p = q + 1; p < l4; p++)
+                    {
+                        if (values[q] == values[p])
+                        {
+                            findvalues();
+                            q = -1;
+                            break;
+                        }
+                    }
+                }
+
+                int a1 = 0, a2 = 0, a3 = 0;
+
+                for (int u = 0; u < l1; u++)
+                {
+                    a1 = (a1 * 10) + values[posit(letters, s1[u])];
+                }
+                for (int u = 0; u < l2; u++)
+                {
+                    a2 = (a2 * 10) + values[posit(letters, s2[u])];
+                }
+                for (int u = 0; u < l3; u++)
+                {
+                    a3 = (a3 * 10) + values[posit(letters, s3[u])];
+                }
+               // Console.WriteLine(a1);
+                if (a1 + a2 == a3)
+                {
+                    Console.WriteLine("Solution Found");
+                    for (int u = 0; u < l4; u++)
+                    {
+                        Console.WriteLine(letters[u] + "=" + values[u]);
+                    }
+                }
+            }
+            void findvalues() {
+                int k;
+                for (k = 0; k < l4; k++) {
+                    values[k] = random.Next(0, 9);
+                }
+            }
+            int posit(char[] str, char y) {
+                int ai, bi;
+                bi = str.Length;
+                for (ai = 0; ai < bi; ai++) {
+                    if (str[ai] == y)
+                    {
+                        return ai;
+                    }
+                    
+                }
+                return 0;
+
+
+            }
+           /* String b = uniqueCharacters(s1, s2, s3);
+            b = b.Trim();
+            Console.WriteLine(b.Length);
+            char[] n_to_assign = b.ToCharArray();
+            int n = n_to_assign.Length;
+            Console.WriteLine(n);
+            //value array that refers character array if unique characters
+            int [] values = new int[(n)];
+            //Assigning a number to character in unique strings then we will check the rules
+            for (int y = 0; y <n;y++) {
+                //Assigning a random variable 
+                values[y] = 0;
+
+            }
+           *//* Random random = new Random();
+            findnextValue();
+            for (int re = 0; re < n; re++)
+            {
+                for (int er = re+1; er < n; er++)
+                {
+                    if (values[re] == values[er])
+                    {
+                        findnextValue();
+                    }
+                }
+            }*/
+
+           /* foreach (int Val in values)
+            {
+                Console.WriteLine(Val);
+            }*/
+
+            /* void findnextValue(){
+                 for (int t = 0; t < n; t++) {
+                     values[t] = random.Next(0,9);
+                 }*//*
+
+
+
+
+             }*/
+            void add(char[] str)
+            {
+                int i, j, l;
+                l = str.Length;
+                for (i = 0; i < l; i++) {
+                    for (j = l4 - 1; j >= 0; j--) {
+                        if (letters[j] == str[i]) {
+                            break;
+                        }
+                    }
+                    if (j == -1) {
+                        letters[l4] = str[i];
+                        l4 = l4 + 1;
+                    }
+                
+                }
+            }
+
+
+           /* static string uniqueCharacters(String str1, String str2, String str3)
             {
                 char[] s1 = str1.ToCharArray();
                 char[] s2 = str2.ToCharArray();
@@ -75,7 +215,7 @@ namespace Assignment_2
                 String str_duplicate = str1 + str2 + str3;
                 char[] concat = str_duplicate.ToCharArray();
                 char[] no_duplicate = new char[(concat.Length)];
-                for (q = 0; q < concat.Length - 1; q++) {
+                for (q = 0; q <= concat.Length-1; q++) {
                     for (v = 0; v < q; v++) {
                         if (concat[q] == concat[v]) {
                             break;
@@ -90,13 +230,23 @@ namespace Assignment_2
                 
 
                 }
-                foreach (char c in no_duplicate) {
+                string numbers_to_assign = new string(no_duplicate);
+                Console.WriteLine(numbers_to_assign);
+                return numbers_to_assign;
+                
+                *//*foreach (char c in no_duplicate) {
                     Console.WriteLine(c);
-                }
+                }*//*
+                
                 //Console.WriteLine(s11.Length);
-            }
+            }*/
 
-    }
+
+
+
+
+
+        }
 
         public static int MinimumSum(int[] l2)
         {
